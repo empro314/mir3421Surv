@@ -1,0 +1,9 @@
+{
+    "path" : "/wd/rAnalysis",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}

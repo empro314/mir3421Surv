@@ -1,0 +1,22 @@
+Project focused on evaluating miR-21 / miR-34 expression ratio as predictor of lung-cancer-patient survival 
+
+```{r}
+#wczytywanie paczek 
+library(TCGAbiolinks)
+```
+
+```{r}
+#pobieranie konkretnych projektow
+
+getGDCprojects()
+TCGAbiolinks:::getProjectSummary("TCGA-LUAD")
+TCGAbiolinks:::getProjectSummary("TCGA-LUSC")
+
+query <- GDCquery(project = "TCGA-LUSC", legacy = TRUE, data.category = "Gene expression", data.type = "miRNA gene quantification", sample.type = c("Primary solid Tumor", "Solid Tissue Normal"))
+
+query2 <- GDCquery(project = "TCGA-LUAD", legacy = TRUE, data.category = "Gene expression", data.type = "miRNA gene quantification", sample.type = c("Primary solid Tumor", "Solid Tissue Normal"))
+
+GDCdownload(query, directory = "./data") 
+GDCdownload(query2, directory = "./data")
+```
+
