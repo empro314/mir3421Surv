@@ -1,0 +1,41 @@
+Warning messages:
+1: In install.packages(pkgs = doing, lib = lib, repos = repos,  ... :
+  installation of package 'RCurl' had non-zero exit status
+2: In install.packages(pkgs = doing, lib = lib, repos = repos,  ... :
+  installation of package 'curl' had non-zero exit status
+3: In install.packages(pkgs = doing, lib = lib, repos = repos,  ... :
+  installation of package 'annotate' had non-zero exit status
+4: In install.packages(pkgs = doing, lib = lib, repos = repos,  ... :
+  installation of package 'GenomeInfoDb' had non-zero exit status
+5: In install.packages(pkgs = doing, lib = lib, repos = repos,  ... :
+  installation of package 'httr' had non-zero exit status
+6: In install.packages(pkgs = doing, lib = lib, repos = repos,  ... :
+  installation of package 'geneplotter' had non-zero exit status
+7: In install.packages(pkgs = doing, lib = lib, repos = repos,  ... :
+  installation of package 'GenomicRanges' had non-zero exit status
+8: In install.packages(pkgs = doing, lib = lib, repos = repos,  ... :
+  installation of package 'biomaRt' had non-zero exit status
+9: In install.packages(pkgs = doing, lib = lib, repos = repos,  ... :
+  installation of package 'rvest' had non-zero exit status
+10: In install.packages(pkgs = doing, lib = lib, repos = repos,  ... :
+  installation of package 'genefilter' had non-zero exit status
+11: In install.packages(pkgs = doing, lib = lib, repos = repos,  ... :
+  installation of package 'DESeq' had non-zero exit status
+12: In install.packages(pkgs = doing, lib = lib, repos = repos,  ... :
+  installation of package 'Rsamtools' had non-zero exit status
+13: In install.packages(pkgs = doing, lib = lib, repos = repos,  ... :
+  installation of package 'SummarizedExperiment' had non-zero exit status
+14: In install.packages(pkgs = doing, lib = lib, repos = repos,  ... :
+  installation of package 'sva' had non-zero exit status
+15: In install.packages(pkgs = doing, lib = lib, repos = repos,  ... :
+  installation of package 'GenomicAlignments' had non-zero exit status
+16: In install.packages(pkgs = doing, lib = lib, repos = repos,  ... :
+  installation of package 'ShortRead' had non-zero exit status
+17: In install.packages(pkgs = doing, lib = lib, repos = repos,  ... :
+  installation of package 'rtracklayer' had non-zero exit status
+18: In install.packages(pkgs = doing, lib = lib, repos = repos,  ... :
+  installation of package 'GenomicFeatures' had non-zero exit status
+19: In install.packages(pkgs = doing, lib = lib, repos = repos,  ... :
+  installation of package 'EDASeq' had non-zero exit status
+20: In install.packages(pkgs = doing, lib = lib, repos = repos,  ... :
+  installation of package 'TCGAbiolinks' had non-zero exit status
