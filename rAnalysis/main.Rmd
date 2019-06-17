@@ -1,0 +1,85 @@
+Glowna skladowa analizy - pobieranie wynikow przezycia, scalenie z obecnymi danymi 
+
+```{r}
+#wczytywanie koniecznych paczek 
+
+library(stringr)
+library(splus2R)
+```
+
+
+```{r}
+#wczytywanie wszystkich datasetow
+
+load("datasets.rda")
+
+ad <- t(ad)
+sc <- t(sc)
+
+surv <- read.csv(file = "survData.csv", sep = ";", row.names = 1)
+
+```
+
+
+czyszczenie zbioru danych 
+..-01A-.. - probka z guza - zostaje
+..-11A-.. - zdrowa tkanka - usuniete (jak i wszystko pozostale) z analizy 
+
+```{r}
+sc <- as.data.frame(sc)
+ad <- as.data.frame(ad)
+
+sc <- sc[grep("*-01A-*", rownames(sc)), ]
+ad <- ad[grep("*-01A-*", rownames(ad)), ]
+
+#przytnij teraz nazwy tak, by identyfikowaly jedynie pacjenta 
+
+rownames(sc) <- str_extract(rownames(sc), "TCGA-.{2}-.{4}")
+
+#z jakiegos powodu w ad mamy wiele probek od pojedynczego pacjenta - usuwamy wowczas takiego pacjenta 
+ad <- ad[!duplicated(str_extract(rownames(ad), "TCGA-.{2}-.{4}")), ]
+
+rownames(ad) <- str_extract(rownames(ad), "TCGA-.{2}-.{4}")
+
+
+sc$ratio <- (sc[, "hsa-mir-21"] / sc[, "hsa-mir-34a"])
+ad$ratio <- (ad[, "hsa-mir-21"] / ad[, "hsa-mir-34a"])
+```
+
+
+scalanie przezycia z ekspresja
+```{r}
+sc <- merge(sc, surv[rownames(sc), ], by = 0)
+ad <- merge(ad, surv[rownames(ad), ], by = 0)
+```
+
+scal obydwa zbiory danych 
+```{r}
+fullData <- rbind(sc, ad)
+
+fullData <- fullData[-grep(pattern = "*N+", x = fullData$OS.time), ]
+fullData <- fullData[-grep(pattern = "*N+", x = fullData$OS.time), ]
+
+fullData$OS.time <- as.numeric(fullData$OS.time)
+fullData$OS <- as.numeric(levels(fullData$OS))[fullData$OS]
+```
+
+
+Budujemy model regresji coxa
+
+```{r}
+library("survival")
+library("survminer")
+```
+
+```{r}
+survObj <- Surv(fullData$OS.time, fullData$OS)
+coxRes <- coxph(survObj ~ ratio, data = fullData)
+```
+
+przykladowy wykres
+
+```{r}
+ggsurvplot(survfit(coxRes, data = fullData), color = "#2E9FDF", ggtheme = theme_minimal())
+```
+
